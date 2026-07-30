@@ -1,81 +1,154 @@
-# CEMExplorer
-A desktop application for creating, navigating, and maintaining Cyples Engineering Methodology (CEM) projects.
+# CEM Explorer
 
-CEM Explorer is a Windows desktop application built in C# that provides a dedicated workspace for engineering projects organized using the Cyples Engineering Methodology (CEM).
+> A Windows desktop application for creating, navigating, and maintaining projects built using the Cyples Engineering Methodology (CEM).
 
-Unlike a traditional file explorer, CEM Explorer understands the structure of a CEM project and presents it as an engineering workspace rather than simply a collection of folders and files.
+CEM Explorer is a desktop application that understands the structure of a Cyples Engineering Methodology (CEM) project and provides an engineering workspace instead of simply displaying folders and files.
 
-Projects remain completely file-based using standard folders and Markdown documents, making them easy to version with Git, share between developers, and edit with any text editor.
 
-Current Features
-Browse CEM project folders
-Tree view navigation
-Document viewing workspace
-Project title management
-Create new CEM project skeleton
-Save project changes
-Simple project setup and validation
-Planned Features
-Navigation
-Human-friendly folder and document names
-Expand / Collapse / Refresh controls
-Project status indicators
-Recently opened projects
-Breadcrumb navigation
-Document Workspace
-Markdown viewer
-Markdown editor
-Rendered preview
-Image viewing
-Future support for diagrams and additional document types
-Project Intelligence
-CEM project validation
-Missing document detection
-Automatic project upgrades
-Version-aware project templates
-Naming convention verification
-Project Navigation
 
-Future versions will navigate more than files.
+Built with C# and Windows Forms, it allows CEM projects to remain completely file-based using standard folders and Markdown documents, making them easy to manage with Git, edit using any text editor, and collaborate on with both humans and AI.
 
-Documents will be represented as structured engineering information, allowing navigation directly to sections within a document rather than requiring manual scrolling.
+---
+
+## Features
+
+### Current
+
+- Browse CEM project folders
+- Create new CEM project skeletons
+- TreeView navigation
+- View and edit Markdown documents
+- Save document changes
+- Project title management through `README.md`
+- Configurable project abbreviation
+- Automatically generates the standard CEM folder structure
+
+### Planned
+
+- Human-friendly folder and document names
+- Markdown preview mode
+- Project validation
+- Status indicators
+- Expand / Collapse / Refresh navigation controls
+- Breadcrumb navigation
+- Project version upgrades
+- Intelligent document navigation
+- AI-assisted engineering workflow support
+
+---
+
+## Design Philosophy
+
+Unlike traditional project management software, CEM Explorer stores projects entirely as normal folders and Markdown documents.
+
+This approach offers several advantages:
+
+
+
+- Human-readable
+
+- Git-friendly
+
+- AI-friendly
+
+- Platform-independent project format
+
+- No proprietary database
+
+- Long-term maintainable
+
+- Future-proof through open file formats
+
+The application provides an engineering-focused workspace while leaving the underlying project open and accessible.
+
+---
+
+## Project Structure
+
+New projects are generated using a configurable skeleton.
 
 Example:
 
-Concept Architecture
-    Concept Overview
-    Concept Outline
-        Goals
-        Constraints
-        Assumptions
-        Risks
+```text
+Project/
+│
+├── README.md
+├── LICENSE
+├── CHANGELOG.md
+├── .gitignore
+│
+└── docs/
+    ├── Vision/
+    ├── ConceptArchitecture/
+    ├── Requirements/
+    ├── DecisionRecords/
+    └── SystemArchitecture/
+```
 
-Selecting an outline item will open the corresponding document and position the workspace at that section.
+Project abbreviations are substituted throughout the generated documents during creation.
 
-Design Philosophy
+---
 
-CEM Explorer intentionally stores all project information as normal files and folders.
+## Current Workflow
 
-This approach provides several advantages:
+- Select a root folder using the included folder selection control.
+- Browse folders and files using the TreeView.
+- View or edit Markdown documents.
+- Read the project title from the first level-one heading in `README.md`.
+- Update the project title using **Setup**.
+- Create a new project using **Create**.
+- Prompt for a project abbreviation.
+- Generate the complete project structure from `CEMEXPLORERSKELETON.txt`.
+- Replace every `SKLTN` token with the supplied project abbreviation.
+- Automatically switch to the newly created project after generation.
 
-Human readable
-Git friendly
-AI friendly
-Long-term maintainable
-No proprietary database
-Portable across operating systems
-Easy backup and archival
+---
 
-The application serves as a project navigator and engineering workspace while keeping the underlying project structure simple and open.
+## Technology
 
-Technology
-C#
-.NET 5
-Windows Forms
-Markdown documents
-Standard Windows file system
-Project Status
+- C#
+- Windows Forms
+- .NET 5
+- Visual Studio 2019
+
+---
+
+## Roadmap
+
+CEM Explorer is intended to evolve from a project browser into a complete engineering workspace.
+
+Future versions are expected to navigate not only documents, but also the engineering concepts contained within them. Selecting items such as Goals, Constraints, Assumptions, or Requirements will automatically position the document workspace at the appropriate section.
+
+Ultimately, CEM Explorer aims to become the primary navigation and authoring environment for CEM-based engineering projects.
+
+Over time, CEM Explorer will evolve from a document navigator into a project navigator, allowing engineers to work with concepts, decisions, requirements, and architecture directly rather than thinking in terms of files and folders.
+
+---
+
+## Building
+
+Requirements:
+
+- Visual Studio 2019
+- .NET 5 SDK
+- Windows Forms workload
+
+Open `CEMExplorer.sln`, build the solution, and run the `CEMExplorer` project.
+
+---
+
+## Project Status
 
 Early development.
 
-The current focus is building the core project navigation experience before expanding into document editing, validation, and AI-assisted engineering workflows.
+The current focus is establishing a solid navigation experience before expanding into document intelligence, validation, and AI-assisted engineering capabilities.
+
+---
+
+## Vision
+
+CEM Explorer is being developed alongside the Cyples Engineering Methodology itself.
+
+Rather than serving as a generic file explorer, the long-term goal is to provide an engineering workspace that understands the structure of CEM projects, helping engineers, developers, and AI assistants navigate complex systems through organized concepts, requirements, decisions, and architecture.
+
+As both CEM and CEM Explorer evolve, each will inform and improve the other.
