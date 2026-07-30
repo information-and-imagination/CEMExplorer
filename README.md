@@ -10,7 +10,7 @@ Built with C# and Windows Forms, it allows CEM projects to remain completely fil
 
 ---
 
-- [UI Screen Shot](CEMExplorerBaseUI.jpg)
+- ![UI Screen Shot](Images/CEMExplorerBaseUI.jpg)
 
 ---
 
