@@ -1,0 +1,28 @@
+Module
+-substrate material
+-power supply
+-sensor
+--mounting
+-connection I/O
+--protocol
+---i2c
+---CANBUS
+---ethernet
+---bluetooth|wireless
+---IR|wireless
+--wired|protocol
+--wireless|protocol
+-Circuit
+--microcontroller
+---supporting circuitry
+--microprocessor
+---supporting circuitry
+--FPGA
+---supporting circuitry
+-connectors
+--power
+--sensor
+--communications|protocol
+-Schematic|**
+-mechanical/physical drawings|**
+
