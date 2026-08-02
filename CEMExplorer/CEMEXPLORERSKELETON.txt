@@ -1,0 +1,22 @@
+SKLTN/
+	README.md
+	LICENSE
+	CHANGELOG.md
+	.gitignore
+	docs/
+		Vision/
+			ReservedImage.png
+		ConceptArchitecture/
+			ConceptOverview.md
+			ConceptOutline.ceo
+		Requirements/
+			SKLTN-SR-001-xxxxxxxx.md
+			SKLTN-SR-002-xxxxxxxx.md
+			SKLTN-SR-...-xxxxxxxx.md
+		DecisionRecords/
+			SKLTN-DR-001-xxxxxxxx.md
+			SKLTN-DR-002-xxxxxxxx.md
+			SKLTN-DR-...-xxxxxxxx.md
+		SystemArchitecture/
+			SystemOverview.md
+			SystemOutline-xxxxxxxx.ceo
