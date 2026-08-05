@@ -67,7 +67,7 @@ The application provides an engineering-focused workspace while leaving the unde
 
 ---
 
-##Place Knowledge at the Highest Applicable Level
+## Place Knowledge at the Highest Applicable Level
 
 Requirements and decisions should be recorded at the highest level where they remain valid.
 
