@@ -84,19 +84,24 @@ New projects are generated using a configurable skeleton.
 Example:
 
 ```text
-Project/
+Production Line
 │
-├── README.md
-├── LICENSE
-├── CHANGELOG.md
-├── .gitignore
+├── Requirements
+│   ├── Communication Protocol
+│   ├── Timing
+│   ├── Error Handling
+│   ├── Safety
+│   └── Traceability
 │
-└── docs/
-    ├── Vision/
-    ├── ConceptArchitecture/
-    ├── Requirements/
-    ├── DecisionRecords/
-    └── SystemArchitecture/
+├── Decision Records
+│   ├── Use TCP/IP
+│   └── Standardize Message Format
+│
+├── System Architecture - Station 10 - Loader
+├── System Architecture - Station 20 - Vision
+├── System Architecture - Station 30 - Robot
+├── System Architecture - Station 40 - Inspection
+└── System Architecture - Station 50 - Shipping
 ```
 
 Project abbreviations are substituted throughout the generated documents during creation.
