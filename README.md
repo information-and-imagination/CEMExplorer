@@ -67,6 +67,16 @@ The application provides an engineering-focused workspace while leaving the unde
 
 ---
 
+##Place Knowledge at the Highest Applicable Level
+
+Requirements and decisions should be recorded at the highest level where they remain valid.
+
+A project-level requirement applies to every implementation of the project. An implementation-specific requirement belongs only within that implementation.
+
+This minimizes duplication, keeps shared engineering knowledge centralized, and allows multiple implementations to evolve independently while remaining compliant with the overall project objectives.
+
+---
+
 ## Project Structure
 
 New projects are generated using a configurable skeleton.
