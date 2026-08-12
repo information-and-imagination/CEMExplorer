@@ -14,6 +14,12 @@ Built with C# and Windows Forms, it allows CEM projects to remain completely fil
 
 ---
 
+* This screen shot is the same program just using a different structure for the folders and files.
+
+- ![Alternate UI Screen Shot](Images/TestofCEMWithDifferentStructure.jpg)
+
+---
+
 ## Features
 
 ### Current
