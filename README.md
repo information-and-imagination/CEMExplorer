@@ -32,6 +32,7 @@ Built with C# and Windows Forms, it allows CEM projects to remain completely fil
 - Project title management through `README.md`
 - Configurable project abbreviation
 - Automatically generates the standard CEM folder structure
+- Splash screen added to start the program to either select an existing CEM file or to create a new one.
 
 ### Planned
 
