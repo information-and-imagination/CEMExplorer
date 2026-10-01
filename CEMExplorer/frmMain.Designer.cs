@@ -3,14 +3,13 @@ namespace CEMExplorer
     partial class frmMain
     {
         private System.ComponentModel.IContainer? components = null;
-        private Controls.ucFileSelector fileSelector = null!;
-        private System.Windows.Forms.Label lblRootFolder = null!;
         private System.Windows.Forms.Label lblTitle = null!;
         private System.Windows.Forms.TextBox txtTitle = null!;
         private System.Windows.Forms.Button btnSetup = null!;
         private System.Windows.Forms.SplitContainer splitMain = null!;
         private System.Windows.Forms.Label lblStructure = null!;
         private System.Windows.Forms.TreeView tvProject = null!;
+        private System.Windows.Forms.Button btnNewSystemArchitecture = null!;
         private System.Windows.Forms.Label lblDetail = null!;
         private System.Windows.Forms.Panel pnlDetail = null!;
         private System.Windows.Forms.ListView lvFolder = null!;
@@ -27,7 +26,6 @@ namespace CEMExplorer
         private System.Windows.Forms.Button btnOutlineRemove = null!;
         private System.Windows.Forms.TreeView tvOutline = null!;
         private System.Windows.Forms.Panel pnlButtons = null!;
-        private System.Windows.Forms.Button btnCreate = null!;
         private System.Windows.Forms.Button btnNameTemplate = null!;
         private System.Windows.Forms.Button btnAddNumberedFile = null!;
         private System.Windows.Forms.Button btnSave = null!;
@@ -45,14 +43,13 @@ namespace CEMExplorer
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.fileSelector = new CEMExplorer.Controls.ucFileSelector();
-            this.lblRootFolder = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.txtTitle = new System.Windows.Forms.TextBox();
             this.btnSetup = new System.Windows.Forms.Button();
             this.splitMain = new System.Windows.Forms.SplitContainer();
             this.lblStructure = new System.Windows.Forms.Label();
             this.tvProject = new System.Windows.Forms.TreeView();
+            this.btnNewSystemArchitecture = new System.Windows.Forms.Button();
             this.lblDetail = new System.Windows.Forms.Label();
             this.pnlDetail = new System.Windows.Forms.Panel();
             this.lvFolder = new System.Windows.Forms.ListView();
@@ -69,7 +66,6 @@ namespace CEMExplorer
             this.btnOutlineRename = new System.Windows.Forms.Button();
             this.btnOutlineRemove = new System.Windows.Forms.Button();
             this.pnlButtons = new System.Windows.Forms.Panel();
-            this.btnCreate = new System.Windows.Forms.Button();
             this.btnNameTemplate = new System.Windows.Forms.Button();
             this.btnAddNumberedFile = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
@@ -86,55 +82,41 @@ namespace CEMExplorer
             this.pnlButtons.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
-            // lblRootFolder
-            this.lblRootFolder.AutoSize = true;
-            this.lblRootFolder.Location = new System.Drawing.Point(14, 17);
-            this.lblRootFolder.Name = "lblRootFolder";
-            this.lblRootFolder.Size = new System.Drawing.Size(87, 20);
-            this.lblRootFolder.Text = "Root folder:";
-            // fileSelector
-            this.fileSelector.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            this.fileSelector.FileType = "";
-            this.fileSelector.Location = new System.Drawing.Point(107, 12);
-            this.fileSelector.Name = "fileSelector";
-            this.fileSelector.SelectFolder = true;
-            this.fileSelector.Size = new System.Drawing.Size(859, 30);
-            this.fileSelector.TabIndex = 0;
-            this.fileSelector.FileNameChanged += new System.EventHandler(this.fileSelector_FileNameChanged);
             // lblTitle
             this.lblTitle.AutoSize = true;
-            this.lblTitle.Location = new System.Drawing.Point(14, 58);
+            this.lblTitle.Location = new System.Drawing.Point(14, 17);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(41, 20);
             this.lblTitle.Text = "Title:";
             // txtTitle
             this.txtTitle.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            this.txtTitle.Location = new System.Drawing.Point(107, 54);
+            this.txtTitle.Location = new System.Drawing.Point(61, 13);
             this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Size = new System.Drawing.Size(764, 27);
-            this.txtTitle.TabIndex = 1;
+            this.txtTitle.Size = new System.Drawing.Size(810, 27);
+            this.txtTitle.TabIndex = 0;
             // btnSetup
             this.btnSetup.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            this.btnSetup.Location = new System.Drawing.Point(880, 52);
+            this.btnSetup.Location = new System.Drawing.Point(880, 11);
             this.btnSetup.Name = "btnSetup";
             this.btnSetup.Size = new System.Drawing.Size(86, 31);
-            this.btnSetup.TabIndex = 2;
-            this.btnSetup.Text = "Setup";
+            this.btnSetup.TabIndex = 1;
+            this.btnSetup.Text = "Save Title";
             this.btnSetup.UseVisualStyleBackColor = true;
             this.btnSetup.Click += new System.EventHandler(this.btnSetup_Click);
             // splitMain
             this.splitMain.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            this.splitMain.Location = new System.Drawing.Point(14, 94);
+            this.splitMain.Location = new System.Drawing.Point(14, 53);
             this.splitMain.Name = "splitMain";
             // splitMain.Panel1
             this.splitMain.Panel1.Controls.Add(this.tvProject);
+            this.splitMain.Panel1.Controls.Add(this.btnNewSystemArchitecture);
             this.splitMain.Panel1.Controls.Add(this.lblStructure);
             // splitMain.Panel2
             this.splitMain.Panel2.Controls.Add(this.pnlDetail);
             this.splitMain.Panel2.Controls.Add(this.lblDetail);
-            this.splitMain.Size = new System.Drawing.Size(952, 516);
+            this.splitMain.Size = new System.Drawing.Size(952, 557);
             this.splitMain.SplitterDistance = 370;
-            this.splitMain.TabIndex = 3;
+            this.splitMain.TabIndex = 2;
             // lblStructure
             this.lblStructure.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblStructure.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
@@ -148,9 +130,17 @@ namespace CEMExplorer
             this.tvProject.HideSelection = false;
             this.tvProject.Location = new System.Drawing.Point(0, 29);
             this.tvProject.Name = "tvProject";
-            this.tvProject.Size = new System.Drawing.Size(370, 487);
+            this.tvProject.Size = new System.Drawing.Size(370, 528);
             this.tvProject.TabIndex = 0;
             this.tvProject.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvProject_AfterSelect);
+            // btnNewSystemArchitecture
+            this.btnNewSystemArchitecture.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnNewSystemArchitecture.Height = 39;
+            this.btnNewSystemArchitecture.Name = "btnNewSystemArchitecture";
+            this.btnNewSystemArchitecture.TabIndex = 1;
+            this.btnNewSystemArchitecture.Text = "New System Architecture";
+            this.btnNewSystemArchitecture.UseVisualStyleBackColor = true;
+            this.btnNewSystemArchitecture.Click += new System.EventHandler(this.btnNewSystemArchitecture_Click);
             // lblDetail
             this.lblDetail.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblDetail.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
@@ -166,7 +156,7 @@ namespace CEMExplorer
             this.pnlDetail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlDetail.Location = new System.Drawing.Point(0, 29);
             this.pnlDetail.Name = "pnlDetail";
-            this.pnlDetail.Size = new System.Drawing.Size(578, 487);
+            this.pnlDetail.Size = new System.Drawing.Size(578, 528);
             // lvFolder
             this.lvFolder.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { this.colName, this.colType, this.colSize, this.colModified });
             this.lvFolder.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -175,7 +165,7 @@ namespace CEMExplorer
             this.lvFolder.Location = new System.Drawing.Point(0, 0);
             this.lvFolder.MultiSelect = false;
             this.lvFolder.Name = "lvFolder";
-            this.lvFolder.Size = new System.Drawing.Size(578, 487);
+            this.lvFolder.Size = new System.Drawing.Size(578, 528);
             this.lvFolder.TabIndex = 0;
             this.lvFolder.UseCompatibleStateImageBehavior = false;
             this.lvFolder.View = System.Windows.Forms.View.Details;
@@ -198,7 +188,7 @@ namespace CEMExplorer
             this.txtFileContents.Multiline = true;
             this.txtFileContents.Name = "txtFileContents";
             this.txtFileContents.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtFileContents.Size = new System.Drawing.Size(578, 487);
+            this.txtFileContents.Size = new System.Drawing.Size(578, 528);
             this.txtFileContents.TabIndex = 1;
             this.txtFileContents.Visible = false;
             this.txtFileContents.WordWrap = false;
@@ -209,7 +199,7 @@ namespace CEMExplorer
             this.pnlOutline.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlOutline.Location = new System.Drawing.Point(0, 0);
             this.pnlOutline.Name = "pnlOutline";
-            this.pnlOutline.Size = new System.Drawing.Size(578, 487);
+            this.pnlOutline.Size = new System.Drawing.Size(578, 528);
             this.pnlOutline.TabIndex = 2;
             this.pnlOutline.Visible = false;
             // tvOutline
@@ -218,7 +208,7 @@ namespace CEMExplorer
             this.tvOutline.LabelEdit = true;
             this.tvOutline.Location = new System.Drawing.Point(0, 43);
             this.tvOutline.Name = "tvOutline";
-            this.tvOutline.Size = new System.Drawing.Size(578, 444);
+            this.tvOutline.Size = new System.Drawing.Size(578, 485);
             this.tvOutline.TabIndex = 1;
             this.tvOutline.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.tvOutline_AfterLabelEdit);
             this.tvOutline.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvOutline_AfterSelect);
@@ -253,7 +243,6 @@ namespace CEMExplorer
             this.btnOutlineRemove.Click += new System.EventHandler(this.btnOutlineRemove_Click);
             // pnlButtons
             this.pnlButtons.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            this.pnlButtons.Controls.Add(this.btnCreate);
             this.pnlButtons.Controls.Add(this.btnNameTemplate);
             this.pnlButtons.Controls.Add(this.btnAddNumberedFile);
             this.pnlButtons.Controls.Add(this.btnSave);
@@ -261,16 +250,8 @@ namespace CEMExplorer
             this.pnlButtons.Location = new System.Drawing.Point(14, 619);
             this.pnlButtons.Name = "pnlButtons";
             this.pnlButtons.Size = new System.Drawing.Size(952, 43);
-            // btnCreate
-            this.btnCreate.Location = new System.Drawing.Point(0, 5);
-            this.btnCreate.Name = "btnCreate";
-            this.btnCreate.Size = new System.Drawing.Size(90, 33);
-            this.btnCreate.TabIndex = 0;
-            this.btnCreate.Text = "Create";
-            this.btnCreate.UseVisualStyleBackColor = true;
-            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // btnNameTemplate
-            this.btnNameTemplate.Location = new System.Drawing.Point(97, 5);
+            this.btnNameTemplate.Location = new System.Drawing.Point(0, 5);
             this.btnNameTemplate.Name = "btnNameTemplate";
             this.btnNameTemplate.Size = new System.Drawing.Size(128, 33);
             this.btnNameTemplate.TabIndex = 1;
@@ -278,7 +259,7 @@ namespace CEMExplorer
             this.btnNameTemplate.UseVisualStyleBackColor = true;
             this.btnNameTemplate.Click += new System.EventHandler(this.btnNameTemplate_Click);
             // btnAddNumberedFile
-            this.btnAddNumberedFile.Location = new System.Drawing.Point(232, 5);
+            this.btnAddNumberedFile.Location = new System.Drawing.Point(135, 5);
             this.btnAddNumberedFile.Name = "btnAddNumberedFile";
             this.btnAddNumberedFile.Size = new System.Drawing.Size(155, 33);
             this.btnAddNumberedFile.TabIndex = 2;
@@ -286,7 +267,7 @@ namespace CEMExplorer
             this.btnAddNumberedFile.UseVisualStyleBackColor = true;
             this.btnAddNumberedFile.Click += new System.EventHandler(this.btnAddNumberedFile_Click);
             // btnSave
-            this.btnSave.Location = new System.Drawing.Point(394, 5);
+            this.btnSave.Location = new System.Drawing.Point(297, 5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(90, 33);
             this.btnSave.TabIndex = 3;
@@ -321,8 +302,6 @@ namespace CEMExplorer
             this.Controls.Add(this.btnSetup);
             this.Controls.Add(this.txtTitle);
             this.Controls.Add(this.lblTitle);
-            this.Controls.Add(this.fileSelector);
-            this.Controls.Add(this.lblRootFolder);
             this.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.MinimumSize = new System.Drawing.Size(760, 520);
             this.Name = "frmMain";

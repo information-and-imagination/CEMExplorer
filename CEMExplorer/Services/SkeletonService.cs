@@ -20,8 +20,8 @@ namespace CEMExplorer.Services
                 if (string.IsNullOrWhiteSpace(sourceLine))
                     continue;
 
-                int depth = CountIndent(sourceLine);
-                string name = sourceLine.Trim().TrimEnd('|').Trim();
+                int depth = CountDepth(sourceLine);
+                string name = sourceLine.Substring(depth).Trim().TrimEnd('|').Trim();
                 if (name.Length == 0 || name == "|")
                     continue;
 
@@ -34,7 +34,7 @@ namespace CEMExplorer.Services
                     directoryStack.RemoveAt(directoryStack.Count - 1);
 
                 if (depth > directoryStack.Count)
-                    throw new InvalidDataException("Invalid indentation in skeleton line: " + sourceLine);
+                    throw new InvalidDataException("The skeleton skips a hierarchy level: " + sourceLine);
 
                 string relativePath = directoryStack.Count == 0
                     ? name
@@ -91,31 +91,11 @@ namespace CEMExplorer.Services
             return projectRoot;
         }
 
-        private static int CountIndent(string line)
+        private static int CountDepth(string line)
         {
             int depth = 0;
-            int spaces = 0;
-            foreach (char character in line)
-            {
-                if (character == '\t')
-                {
-                    depth++;
-                    spaces = 0;
-                }
-                else if (character == ' ')
-                {
-                    spaces++;
-                    if (spaces == 4)
-                    {
-                        depth++;
-                        spaces = 0;
-                    }
-                }
-                else
-                {
-                    break;
-                }
-            }
+            while (depth < line.Length && line[depth] == '-')
+                depth++;
             return depth;
         }
 

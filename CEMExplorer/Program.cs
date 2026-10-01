@@ -11,7 +11,9 @@ namespace CEMExplorer
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMain());
+            using frmProjectWizard wizard = new frmProjectWizard();
+            if (wizard.ShowDialog() == DialogResult.OK)
+                Application.Run(new frmMain(wizard.ProjectRoot));
         }
     }
 }

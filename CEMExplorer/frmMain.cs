@@ -11,26 +11,24 @@ namespace CEMExplorer
 {
     public partial class frmMain : Form
     {
-        private readonly SkeletonService skeletonService = new SkeletonService();
         private readonly CeoOutlineService ceoOutlineService = new CeoOutlineService();
         private static readonly Regex TemplatePlaceholderPattern = new Regex("X{3,}", RegexOptions.IgnoreCase);
+        private readonly string projectRoot;
         private string? selectedFilePath;
         private bool fileContentsDirty;
         private bool loadingFile;
         private bool selectedFileIsCeo;
 
-        public frmMain()
+        public frmMain(string projectRoot)
         {
+            if (string.IsNullOrWhiteSpace(projectRoot))
+                throw new ArgumentException("A project root folder is required.", nameof(projectRoot));
+
+            this.projectRoot = Path.GetFullPath(projectRoot);
             InitializeComponent();
+            Text = "CEM Explorer — " + new DirectoryInfo(this.projectRoot).Name;
+            LoadRootFolder(this.projectRoot);
             UpdateCommandState();
-        }
-
-        private void fileSelector_FileNameChanged(object? sender, EventArgs e)
-        {
-            if (!ConfirmDiscardChanges())
-                return;
-
-            LoadRootFolder(fileSelector.FileName.Trim());
         }
 
         private void LoadRootFolder(string rootFolder)
@@ -76,15 +74,15 @@ namespace CEMExplorer
         {
             try
             {
+                foreach (FileInfo file in directory.EnumerateFiles().OrderBy(item => item.Name, StringComparer.OrdinalIgnoreCase))
+                    parentNode.Nodes.Add(CreateTreeNode(file));
+
                 foreach (DirectoryInfo childDirectory in directory.EnumerateDirectories().OrderBy(item => item.Name, StringComparer.OrdinalIgnoreCase))
                 {
                     TreeNode childNode = CreateTreeNode(childDirectory);
                     parentNode.Nodes.Add(childNode);
                     AddChildren(childNode, childDirectory);
                 }
-
-                foreach (FileInfo file in directory.EnumerateFiles().OrderBy(item => item.Name, StringComparer.OrdinalIgnoreCase))
-                    parentNode.Nodes.Add(CreateTreeNode(file));
             }
             catch (UnauthorizedAccessException)
             {
@@ -134,10 +132,10 @@ namespace CEMExplorer
             try
             {
                 DirectoryInfo directory = new DirectoryInfo(folderPath);
-                foreach (DirectoryInfo childDirectory in directory.EnumerateDirectories().OrderBy(item => item.Name, StringComparer.OrdinalIgnoreCase))
-                    lvFolder.Items.Add(CreateListItem(childDirectory));
                 foreach (FileInfo file in directory.EnumerateFiles().OrderBy(item => item.Name, StringComparer.OrdinalIgnoreCase))
                     lvFolder.Items.Add(CreateListItem(file));
+                foreach (DirectoryInfo childDirectory in directory.EnumerateDirectories().OrderBy(item => item.Name, StringComparer.OrdinalIgnoreCase))
+                    lvFolder.Items.Add(CreateListItem(childDirectory));
             }
             catch (Exception ex) when (ex is IOException || ex is UnauthorizedAccessException)
             {
@@ -245,34 +243,9 @@ namespace CEMExplorer
             UpdateCommandState();
         }
 
-        private void btnCreate_Click(object? sender, EventArgs e)
-        {
-            string baseFolder = fileSelector.FileName.Trim();
-            if (!Directory.Exists(baseFolder))
-            {
-                MessageBox.Show(this, "Select an existing root folder first.", "CEM Explorer", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            if (!AbbreviationPrompt.TryGet(this, out string abbreviation))
-                return;
-
-            string skeletonFile = Path.Combine(AppContext.BaseDirectory, "CEMEXPLORERSKELETON.txt");
-            try
-            {
-                string projectRoot = skeletonService.Create(baseFolder, skeletonFile, abbreviation, txtTitle.Text.Trim());
-                fileSelector.FileName = projectRoot;
-                SetStatus("Created CEM project structure in " + projectRoot);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(this, ex.Message, "CEM Explorer", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         private void btnSetup_Click(object? sender, EventArgs e)
         {
-            string rootFolder = fileSelector.FileName.Trim();
+            string rootFolder = projectRoot;
             string title = txtTitle.Text.Trim();
             if (!Directory.Exists(rootFolder))
             {
@@ -283,13 +256,6 @@ namespace CEMExplorer
             {
                 MessageBox.Show(this, "Enter a project title first.", "CEM Explorer", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txtTitle.Focus();
-                return;
-            }
-
-            bool isEmpty = !Directory.EnumerateFileSystemEntries(rootFolder).Any();
-            if (isEmpty)
-            {
-                SetStatus("Title is ready. Click Create to generate the project structure.");
                 return;
             }
 
@@ -308,6 +274,36 @@ namespace CEMExplorer
         private void btnSave_Click(object? sender, EventArgs e)
         {
             SaveSelectedFile();
+        }
+
+        private void btnNewSystemArchitecture_Click(object? sender, EventArgs e)
+        {
+            if (!ConfirmDiscardChanges())
+                return;
+            string conceptFolder = Path.Combine(projectRoot, "docs", "ConceptArchitecture");
+            string conceptFile = Path.Combine(conceptFolder, "Concept.ceo");
+            if (!File.Exists(conceptFile))
+                conceptFile = Path.Combine(conceptFolder, "ConceptOutline.ceo");
+            if (!File.Exists(conceptFile))
+            {
+                MessageBox.Show(this, "No Concept.ceo or ConceptOutline.ceo was found in docs/ConceptArchitecture.",
+                    "New System Architecture", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            try
+            {
+                using NewSystemArchitectureDialog dialog = new NewSystemArchitectureDialog(projectRoot, conceptFile);
+                if (dialog.ShowDialog(this) == DialogResult.OK)
+                {
+                    ReloadAndSelect(dialog.CreatedPath);
+                    SetStatus("Created " + dialog.CreatedPath);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "New System Architecture", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private bool SaveSelectedFile()
@@ -366,8 +362,7 @@ namespace CEMExplorer
 
         private void RefreshTreePreservingSelection()
         {
-            string root = fileSelector.FileName.Trim();
-            LoadRootFolder(root);
+            LoadRootFolder(projectRoot);
         }
 
         private static string ReadProjectTitle(string rootFolder)
@@ -437,8 +432,8 @@ namespace CEMExplorer
 
         private void UpdateCommandState()
         {
-            btnCreate.Enabled = Directory.Exists(fileSelector.FileName.Trim());
-            btnSetup.Enabled = Directory.Exists(fileSelector.FileName.Trim());
+            btnSetup.Enabled = Directory.Exists(projectRoot);
+            btnNewSystemArchitecture.Enabled = Directory.Exists(projectRoot);
             bool templateSelected = selectedFilePath != null && TemplatePlaceholderPattern.IsMatch(Path.GetFileName(selectedFilePath));
             btnNameTemplate.Enabled = templateSelected;
             btnAddNumberedFile.Enabled = templateSelected;
@@ -693,8 +688,7 @@ namespace CEMExplorer
 
         private void ReloadAndSelect(string fullPath)
         {
-            string root = fileSelector.FileName.Trim();
-            LoadRootFolder(root);
+            LoadRootFolder(projectRoot);
             TreeNode? node = FindNode(tvProject.Nodes, fullPath);
             if (node != null)
                 tvProject.SelectedNode = node;
