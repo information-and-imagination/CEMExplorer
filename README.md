@@ -33,6 +33,7 @@ Built with C# and Windows Forms, it allows CEM projects to remain completely fil
 - Configurable project abbreviation
 - Automatically generates the standard CEM folder structure
 - Splash screen added to start the program to either select an existing CEM file or to create a new one.
+- When starting a new System Architecture a popup screen showing the concept outline will appear with checks boxes and you can select those checkboxes to include those items in the new System Architecture. 
 
 ### Planned
 
